@@ -7,6 +7,12 @@ func (l *Lexer) NextToken() token.Token {
 
 	l.skipWhitespace()
 
+	// skip line comments
+	if l.ch == '/' && l.peekChar() == '/' {
+		l.skipUntilNewline()
+		l.skipWhitespace()
+	}
+
 	switch l.ch {
 	case '=':
 		if l.peekChar() == '=' {
@@ -141,6 +147,12 @@ func (l *Lexer) readNumber() string {
 
 func (l *Lexer) skipWhitespace() {
 	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r' {
+		l.readChar()
+	}
+}
+
+func (l *Lexer) skipUntilNewline() {
+	for l.ch != '\n' {
 		l.readChar()
 	}
 }

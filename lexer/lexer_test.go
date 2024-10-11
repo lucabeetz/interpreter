@@ -29,6 +29,7 @@ if (5 < 10) {
 "foobar"
 "foo bar"
 [1, 2];
+// this is a comment and should be ignored
 {"foo": "bar"}
 `
 
