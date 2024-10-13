@@ -31,6 +31,9 @@ if (5 < 10) {
 [1, 2];
 // this is a comment and should be ignored
 {"foo": "bar"}
+while (i < 10) {
+	i = i + 1
+}
 `
 
 	tests := []struct {
@@ -122,6 +125,19 @@ if (5 < 10) {
 		{token.STRING, "foo"},
 		{token.COLON, ":"},
 		{token.STRING, "bar"},
+		{token.RBRACE, "}"},
+		{token.WHILE, "while"},
+		{token.LPAREN, "("},
+		{token.IDENT, "i"},
+		{token.LT, "<"},
+		{token.INT, "10"},
+		{token.RPAREN, ")"},
+		{token.LBRACE, "{"},
+		{token.IDENT, "i"},
+		{token.ASSIGN, "="},
+		{token.IDENT, "i"},
+		{token.PLUS, "+"},
+		{token.INT, "1"},
 		{token.RBRACE, "}"},
 		{token.EOF, ""},
 	}
